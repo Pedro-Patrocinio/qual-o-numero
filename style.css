@@ -1,13 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 body {
-  background-color: #e5e5e5;
+  background: #e5e5e5;
+}
+main {
   display: grid;
+  min-height: 100vh;
   place-items: center;
+  line-height: 1.6;
+  overflow: hidden;
 }
 .box {
   height: 588px;
   width: 1000px;
   border-radius: 0px;
-  background: linear-gradient(180deg, #eeeeee 0%, #ffffff 100%);
+  background: linear-gradient(#eeeeee 0%, #ffffff 100%);
 }
 .title {
   font-family: Montserrat;
@@ -17,26 +33,35 @@ body {
   line-height: 44px;
   text-align: center;
   letter-spacing: -1px;
-  padding-top: 44px;
-  color: linear-gradient(rgba(239, 108, 0, 1), rgba(219, 99, 0, 1));
+  margin: 44px 0 24px 0;
+  min-height: 82px;
+  background-color: black;
+  background-image: linear-gradient(#ef6c00 0%, #db6300 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 .message {
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
-  line-height: 20px;
+  min-height: 20px;
   text-align: center;
   letter-spacing: -1px;
+  color: #ff6600;
+  margin: 0 0 16px 0;
+  min-height: 35px;
 }
 .status {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   text-align: center;
-  letter-spacing: -1px;
+}
+.btnNewBox {
+  margin: 31px 0 78px 0;
+  min-height: 42px;  
+  display: flex;
+  justify-content: center;
 }
 .btnNew {
   background: linear-gradient(180deg, #434854 0%, #9e9e9e 100%);
@@ -45,20 +70,21 @@ body {
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 42px;
   color: #ffffff;
   display: none;
   text-align: center;
   width: 130px;
   height: 42px;
 }
-.sendBox {
-  width: 298px;
-  height: 42px;
+.btnSendBox {
+  min-height: 42px;
+  display: flex;
+  justify-content: center;
 }
 .guess {
   background: #ffffff;
-  border: 1px solid #ff6600;
+  border: 1px solid #cfcfcf;
   box-sizing: border-box;
   border-radius: 4px;
   text-align: center;
@@ -66,10 +92,12 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  line-height: 14px;
+  width: 217px;
+  line-height: 42px;
+  margin-right: 11px;
   color: #9e9e9e;
 }
-.disabledGuess {
+.guess:disabled {
   background: #f5f5f5;
   border: 1px solid #cfcfcf;
   border-radius: 4px;
@@ -80,7 +108,24 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  line-height: 14px;
+  width: 217px;
+  line-height: 42px;
+  color: #9e9e9e;
+}
+.guess:focus{
+  background: #ffffff;
+  border: 1px solid #ff6600;
+  border-color: red;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  width: 217px;
+  line-height: 42px;
+  margin-right: 11px;
   color: #9e9e9e;
 }
 .button {
@@ -91,10 +136,11 @@ body {
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 42px;
+  width: 70px;
   color: #ffffff;
 }
-.disabledButton {
+.button:disabled {
   border: 1px solid #cfcfcf;
   background: #dddddd;
   border-radius: 4px;
@@ -102,6 +148,71 @@ body {
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 42px;
+  width: 70px;
   color: #ffffff;
+}
+.numbers .number {
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+}
+.numbers svg {
+  display: inline-block;
+  margin: 0 4px;
+}
+.numbers svg .segment {
+  fill: #DDDDDD;
+  transition: 0.3s ease-in-out;
+}
+.numbers svg.num-1 .b,
+.numbers svg.num-1 .c,
+.numbers svg.num-2 .a,
+.numbers svg.num-2 .b,
+.numbers svg.num-2 .d,
+.numbers svg.num-2 .e,
+.numbers svg.num-2 .g,
+.numbers svg.num-3 .a,
+.numbers svg.num-3 .b,
+.numbers svg.num-3 .c,
+.numbers svg.num-3 .d,
+.numbers svg.num-3 .g,
+.numbers svg.num-4 .b,
+.numbers svg.num-4 .c,
+.numbers svg.num-4 .f,
+.numbers svg.num-4 .g,
+.numbers svg.num-5 .a,
+.numbers svg.num-5 .c,
+.numbers svg.num-5 .d,
+.numbers svg.num-5 .f,
+.numbers svg.num-5 .g,
+.numbers svg.num-6 .a,
+.numbers svg.num-6 .c,
+.numbers svg.num-6 .d,
+.numbers svg.num-6 .e,
+.numbers svg.num-6 .f,
+.numbers svg.num-6 .g,
+.numbers svg.num-7 .a,
+.numbers svg.num-7 .b,
+.numbers svg.num-7 .c,
+.numbers svg.num-8 .a,
+.numbers svg.num-8 .b,
+.numbers svg.num-8 .c,
+.numbers svg.num-8 .d,
+.numbers svg.num-8 .e,
+.numbers svg.num-8 .f,
+.numbers svg.num-8 .g,
+.numbers svg.num-9 .a,
+.numbers svg.num-9 .b,
+.numbers svg.num-9 .c,
+.numbers svg.num-9 .d,
+.numbers svg.num-9 .f,
+.numbers svg.num-9 .g,
+.numbers svg.num-0 .a,
+.numbers svg.num-0 .b,
+.numbers svg.num-0 .c,
+.numbers svg.num-0 .d,
+.numbers svg.num-0 .e,
+.numbers svg.num-0 .f {
+  fill: #262a34;
 }
